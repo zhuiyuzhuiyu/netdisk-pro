@@ -70,7 +70,7 @@ describe('auth + drive', () => {
     expect(deleteRes.status).toBe(204);
 
     const recycleRes = await request(app)
-      .get('/api/drive/items?includeDeleted=true')
+      .get(`/api/drive/items?includeDeleted=true&folderId=${folderRes.body.id}`)
       .set('Authorization', `Bearer ${token}`);
 
     expect(recycleRes.status).toBe(200);
