@@ -7,6 +7,9 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - AWS_REGION=${AWS_REGION}
       - AWS_S3_BUCKET=${AWS_S3_BUCKET}
+      - STORAGE_DIR=/app/data/uploads
+    volumes:
+      - uploads:/app/data/uploads
     expose:
       - "3000"
     depends_on:
@@ -29,3 +32,4 @@ services:
       - app
 volumes:
   pgdata:
+  uploads:
