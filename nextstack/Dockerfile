@@ -12,5 +12,6 @@ FROM node:20-alpine AS run
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build /app .
+RUN corepack enable && corepack prepare pnpm@10.10.0 --activate
 EXPOSE 3000
 CMD ["pnpm","start"]
