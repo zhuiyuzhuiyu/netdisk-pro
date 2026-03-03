@@ -6,6 +6,7 @@ FROM node:20-alpine AS build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN corepack enable && corepack prepare pnpm@10.10.0 --activate && pnpm prisma:generate
 RUN corepack enable && corepack prepare pnpm@10.10.0 --activate && pnpm build
 FROM node:20-alpine AS run
 WORKDIR /app
