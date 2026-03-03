@@ -1,7 +1,7 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json ./
-RUN corepack enable && corepack prepare pnpm@10.10.0 --activate && pnpm install
+RUN corepack enable && corepack prepare pnpm@10.10.0 --activate && pnpm install --ignore-scripts=false
 FROM node:20-alpine AS build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
